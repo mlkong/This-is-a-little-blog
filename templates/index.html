@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页</title>
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+</head>
+<body>
+    <div class="index_top_maxbig">
+        <div class="index_top_big">
+            <div class="index_top_inner">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none">
+                        这LOGO是真的！
+                    </a>
+                </div>
+                <div class="list">
+                    <ul class="list_ul">
+                        <li>{{ nickname }}</li>
+                        <li><a href="personal.html"> 个人管理</a></li>
+                        <li><a href="introduce.html"> 本页及作者介绍</a></li>
+                        <li class="cancell" style="display:none;"><a href="cancell">注销</a></li>
+                        <script type="text/javascript">
+                            $(function () {
+                                if ($.cookie('is_cookie_cancell')){
+                                $('.index_top_big .list .list_ul .cancell').css('display','block')
+                            }
+                            })
+                        </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="index_mid_maxbig">
+        <div class="index_mid_topbig">
+            <ul class="index_mid_ul">
+                <li style="color: red">
+                    文章分类
+                </li>
+                <li>
+                {% if categry == 0 %}
+                    <a href="index.html?categry=0&locao={{ locao }}" class="active">全部</a>
+                    {% else %}
+                    <a href="index.html?categry=0&locao={{ locao }}">全部</a>
+                {% endif %}
+                    {% for k in categrys%}
+                        {% if categry == k.id %}
+                            <a href="index.html?categry={{ k.id }}&locao={{ locao }}" class="active">{{ k.Category }}</a>
+                            {% else %}
+                            <a href="index.html?categry={{ k.id }}&locao={{ locao }}" >{{ k.Category }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </li>
+                <li>
+                {% if locao == 0%}
+                    <a href="index.html?categry={{ categry }}&locao=0" class="active">全部</a>
+                {% else %}
+                    <a href="index.html?categry={{ categry }}&locao=0">全部</a>
+                {% endif %}
+                    {% for k in locaos%}
+                        {% if locao == k.id%}
+                    <a href="index.html?categry={{ categry }}&locao={{ k.id }}" class="active">{{ k.locations }}</a>
+                        {% else %}
+                            <a href="index.html?categry={{ categry }}&locao={{ k.id }}">{{ k.locations }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                </li>
+            </ul>
+        </div>
+        <div class="index_mid_midbig">
+            <ul>
+                <li style="color: red;font-size: 20px">文章详情</li>
+                {% if data %}
+                <li style="margin-top: 10px">
+                    <ul>
+                        <li>
+                            {% for k in data %}
+                                <a href="details.html?artcles_id={{ k.id }}" class="index_mid_midbig_a">
+                                <div class="index_mid_midbig_a_div" style="border-bottom: 1px solid gainsboro;border-top: 1px solid gainsboro;margin-bottom: 10px">
+                                    <div style="font-size: 18px;color: red;text-align: center;border-bottom: 1px dashed red;">
+                                    {{ k.title }}
+                                </div>
+                                    <p style="font-size: 16px;border-bottom: 1px dashed red;text-indent: 2em">
+                                    {{ k.summary }}
+                                </p>
+                                    <div style="font-size: 14px;color: red;overflow: hidden">
+                                    <ul style="float: right;">
+                                        <li style="float: left;padding-left: 10px">阅读量({{ k.read_mount }})</li>
+                                        <li style="float: left;padding-left: 10px">评论量({{ k.commit_mount }})</li>
+                                        <li style="float: left;padding-left: 10px">{{ k.author.nickname }}</li>
+                                        <li style="float: left;padding-left: 10px">{{ k.article_location.locations }}</li>
+                                        <li style="float: left;padding-left: 10px">{{ k.update_time|date:"Y-m-d H:i:s" }}</li>
+                                    </ul>
+                                </div>
+                                </div></a>
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </li>
+                <li class="page_num" style="text-align: center">
+                    {{ page_str }}
+{#                    <a href="#" style="padding: 0 5px 0 5px">上一页</a>#}
+{#                    <a href="#" style="padding: 0 5px 0 5px">1</a>#}
+{#                    <a href="#" style="padding: 0 5px 0 5px">2</a>#}
+{#                    <a href="#" style="padding: 0 5px 0 5px" class="active">3</a>#}
+{#                    <a href="#" style="padding: 0 5px 0 5px">4</a>#}
+{#                    <a href="#" style="padding:0 5px;margin:0 5px;">5</a>#}
+{#                    <input type="text" style="width: 20px;text-align: center">#}
+{#                    <a href="#" style="padding: 0 5px 0 5px">GO</a>#}
+{#                    <a href="#" style="padding: 0 5px 0 5px">下一页</a>#}
+                </li>
+                {% else %}
+                    <li style="text-align: center">抱歉！此分类没有文章！</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="index_botom_maxbig" style="color: red;position: fixed;bottom: 0;left: 50%;width: 960px;margin-left: -480px;
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
+    background-color:lightsteelblue;">
+        解释权！！！
+    </div>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

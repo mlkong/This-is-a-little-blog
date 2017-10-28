@@ -1,0 +1,539 @@
+/*公共类*/
+*{
+    margin: 0;
+    padding:0;
+}
+body{
+    background-color: aqua;
+    font-family: 'Arial','Microsoft  YaHei','黑体','sans-serif';
+}
+ul{
+    list-style: none;
+}
+input{
+    padding: 5px;
+}
+a{
+    text-decoration: none
+}
+.active{
+    background-color: coral;
+}
+
+
+/*登陆页面的CSS开始*/
+.login_main{
+    width: 900px;
+    margin: 150px auto;
+    border: 1px solid silver;
+}
+.login_main_form{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+.login_main_form_miandenglu{
+    width: 320px;
+    margin: 0 auto;
+    font:14px 'sans-serif';
+}
+.login_main_form > label{
+    display: inline-block;
+    width: 80px;
+}
+.login_main_form_dengluipu{
+    width: 250px;
+    opacity: 0;
+    position: relative;
+    cursor: pointer;
+    z-index: 100;
+}
+.login_main_form_denglu{
+    width: 250px;
+    height:30px;
+    background-color:darkseagreen;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    position: absolute;
+    top:10px;
+    left: 10px;
+    z-index: 80;
+}
+.check_code_img{
+    position: absolute;
+    margin-left:10px;
+    cursor: pointer;
+}
+/*登陆页面的CSS结束*/
+
+/*找回密码模块的CSS开始*/
+.backpw_mid_big1{
+    width: 980px;
+    margin: 250px auto;
+    border: 1px solid sienna;
+}
+.backpw_mid_big2{
+    margin: 5px auto;
+    border-bottom: 1px solid sienna;
+}
+.backpw_mid_big2_sp1{
+    display: inline-block;
+    width: 980px;
+    color: red;
+    font-size: 22px;
+    text-align: center;
+    padding: 10px 0;
+}
+.backpw_mid_big3_ul1>li{
+    width: 450px;
+    margin: 0 auto;
+}
+.backpw_mid_big3_ul1>li>div{
+    padding: 10px;
+}
+.backpw_mid_big3_ul1>li label{
+    display: inline-block;
+    width: 80px;
+}
+.backpw_mid_big3_ul1>li span{
+    margin-left:10px;
+    color: red;
+}
+.backpw_mid_big3_ul1>li .submitt{
+    width: 250px;
+}
+/*找回密码模块的CSS结束*/
+
+/*注册模块开始*/
+.register_mid_big{
+    width: 800px;
+    margin: 250px auto;
+    border: 1px solid sienna;
+}
+.register_mid_top{
+    margin: 5px auto;
+    border-bottom: 1px solid sienna;
+    padding: 20px 0;
+    color: red;
+    text-align: center;
+    font-size: 24px;
+}
+.register_mid_mid .form_register{
+    width:600px;
+    margin: 20px auto;
+}
+.register_mid_mid .form_register label{
+    display: inline-block;
+    width: 90px;
+}
+.register_mid_mid .form_register span{
+    padding-left: 20px;
+    color: red;
+}
+.register_mid_mid .form_register .subumit{
+    width: 160px;
+}
+/*注册模块结束*/
+
+/*主页开始*/
+.index_top_maxbig{
+    background-color: honeydew;
+}
+.index_top_big{
+    width: 980px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: honeydew;
+}
+.index_top_inner{
+    color: cornflowerblue;
+    font-size: 22px;
+    overflow: hidden;/*清楚浮动带来的影响*/
+}
+.index_top_inner .logo{
+    border: 1px solid powderblue;
+    float: left;
+}
+.index_top_inner .list{
+    float: right;
+}
+.index_top_inner .list .list_ul > li {
+    border-left:1px solid yellowgreen;
+    padding: 0 10px 0 10px;
+    float: left;
+}
+.index_top_inner .list .list_ul > li:first-child{
+    border-left: 0 none;
+}
+.index_top_inner .list .list_ul > li a{
+    text-decoration: none;
+}
+.index_top_inner .list .list_ul > li:hover{
+    background-color:powderblue;
+}
+.index_mid_maxbig{
+    width: 980px;
+    margin: 30px auto 0 auto;
+}
+.index_mid_maxbig .index_mid_ul >li{
+    font-size: 22px;
+    margin: 20px 0 20px 0;
+}
+.index_mid_maxbig .index_mid_ul >li a:hover{
+    background-color: honeydew;
+}
+.index_mid_maxbig .index_mid_midbig .page_num > a:hover{
+    background-color: honeydew;
+}
+.index_mid_maxbig .index_mid_ul >li a{
+    font-weight: 500;
+    padding: 0 10px 0 10px;
+    color: forestgreen;
+}
+.index_mid_midbig_a >div >p{
+    color: black;
+}
+.index_mid_midbig_a:hover .index_mid_midbig_a_div{
+    background-color: yellowgreen;
+}
+/*主页结束*/
+
+/*个人管理页面开始*/
+.person_top_maxbig {
+    background-color: honeydew;
+}
+.person_top_mid a:hover{
+    background-color: yellow;
+}
+.person_top_mid{
+    overflow: hidden;
+    width: 980px;
+    margin: 0 auto;
+    background-color: honeydew;
+}
+.person_top_mid_left{
+    float: left;
+}
+.person_top_mid_left a{
+    border: 1px solid peachpuff;
+    border-radius: 10px;
+    float: left;
+    margin: 10px 20px;
+    font-size: 22px;
+}
+.person_top_mid_right{
+    float: right;
+}
+.person_top_mid_right .right_ul >li{
+    font-size: 22px;
+    float: left;
+    margin: 10px;
+    padding: 0 10px;
+    padding-left:20px ;
+    border-left: 1px solid red;
+}
+.person_top_mid_right .right_ul >li:first-child{
+    border-left: 0 none;
+}
+.person_topbottom_midbig{
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.person_topbottom_midbig .person_topbottom_ul > li{
+    margin: 20px 0;
+    float: left;
+    font-size: 24px;
+    padding: 10px;
+}
+.person_topbottom_midbig .person_topbottom_ul > li:hover{
+    background-color: brown;
+}
+.person_mid_maxbig{
+    width: 940px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: lavenderblush;
+}
+.person_mid_maxbig .person_mid_a:hover .person_mid_ul{
+    background-color: peachpuff;
+}
+.person_mid_maxbig .person_mid_a .person_mid_ul .span0{
+    width: 100px;
+    float: right;
+    padding: 5px 0;
+    color: blue;
+}
+.person_mid_maxbig .person_mid_a .person_mid_ul .span0:hover{
+    background-color: sandybrown;
+}
+.person_mid_maxbig .person_mid_ul{
+    overflow: hidden;
+    border-bottom: 2px dashed rosybrown;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.person_mid_maxbig .person_mid_ul .person_mid_midul{
+    float: right;
+}
+.person_mid_maxbig .person_mid_ul .person_mid_midul li {
+    padding: 10px;
+    float: left;
+}
+.person_mid_maxbig .person_mid2_div{
+    overflow: hidden;
+    padding: 10px;
+}
+.person_mid_maxbig .person_mid2_div .fans_mount{
+    width: 500px;
+    margin: 20px auto;
+    padding-bottom:10px ;
+    font-size: 26px;
+}
+.person_mid_maxbig .person_mid2_div .fans_li{
+    color: red;
+    margin: 10px;
+    padding: 5px;
+    padding-left: 20px;
+    border-bottom: 2px dashed darkseagreen;
+    font-size: 22px;
+}
+.person_mid_maxbig .person_mid3_div{
+    overflow: hidden;
+    padding: 10px;
+}
+.person_mid_maxbig .person_mid3_div .fans_mount{
+    width: 450px;
+    margin: 20px auto;
+    padding-bottom:10px ;
+    font-size: 26px;
+}
+.person_mid_maxbig .person_mid3_div .fans_li{
+    color: red;
+    margin: 10px;
+    padding: 5px;
+    padding-left: 20px;
+    border-bottom: 2px dashed darkseagreen;
+    font-size: 22px;
+}
+.person_mid_maxbig .person_mid4_div .pub_text{
+    border-bottom: 2px dashed darkgrey;
+    padding: 10px;
+}
+.person_mid_maxbig .person_mid4_div .pub_text em{
+    font-size: 30px;
+    color: red;
+}
+.person_mid_maxbig .person_mid4_div .pub_text textarea{
+    padding: 10px;
+    resize: none;
+    width: 500px;
+    border-radius: 10px;
+}
+.person_mid_maxbig .person_mid4_div .pub_text_button:hover{
+    background-color: sandybrown;
+}
+/*!*个人管理页面结束*!*/
+
+
+/*文章详情面开始*/
+.details_mid_big{
+    padding: 10px 20px;
+    width: 980px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: antiquewhite;
+}
+.details_mid_big em{
+    color: red;
+}
+.details_mid_big p{
+    padding: 10px 0;
+}
+.details_mid_big .details_commit{
+    margin-top: 30px;
+    overflow: hidden;
+}
+.details_commit .commit_ul2{
+    float: right;
+}
+.details_commit .commit_ul1 >li {
+    overflow: hidden;
+    border-bottom: 1px dashed darkgrey;
+}
+.details_commit .commit_ul2 >li {
+    float: left;
+    margin: 5px 10px;
+}
+.details_commit .commit_ul2 .replay{
+    padding: 5px;
+}
+.details_commit .commit_ul2 .replay:hover{
+    background-color: yellow;
+}
+.details_mid_combutton {
+    position: relative;
+}
+.details_mid_combutton a{
+    position: absolute;
+    font-size: 26px;
+    background-color: tomato;
+    padding: 5px 10px;
+    top: 10px;
+    border-radius: 50%;
+    left: 630px;
+}
+.details_mid_combutton textarea{
+    resize: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+.details_mid_combutton a:hover{
+    background-color:yellow ;
+}
+.teare_pub{
+    resize: none;
+    width: 600px;
+    height: 50px;
+    border-radius: 10px;
+    padding: 10px;
+}
+.button_pub{
+    cursor: pointer;
+    top: 15px;
+    width: 150px;
+    height:40px;
+    border-radius: 10px;
+    position: absolute;
+}
+.button_publ{
+    left: 633px;
+}
+.button_pubr{
+    left: 800px;
+}
+.button_pub:hover{
+    background-color: yellow;
+}
+
+/*文章详情面结束*/
+
+
+/*博主详细信息，供别人查看的*/
+.author_info_mid_maxdiv{
+    width: 940px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: lemonchiffon;
+}
+.author_info_mid_top {
+    font-size: 24px;
+}
+.author_info_mid_top em{
+    color: red;
+}
+.author_info_mid_top .author_info_ul1{
+    margin: 10px;
+    overflow: hidden;
+    padding: 10px;
+}
+.author_info_mid_top .author_info_ul1 li {
+    margin-right: 30px;
+    float: left;
+}
+.author_info_mid_top .author_info_ul2{
+    padding: 10px;
+    margin: 10px;
+    overflow: hidden;
+}
+.author_info_mid_top .author_info_ul2 li {
+    margin-right: 30px;
+    float: left;
+}
+.author_info_article .author_info_article_ul1 {
+    padding: 10px;
+    margin: 10px;
+    overflow: hidden;
+}
+.author_info_article .author_info_article_ul1 li:hover{
+    background-color: skyblue;
+}
+.author_info_article .author_info_article_ul1 li{
+    cursor: pointer;
+    margin-right: 30px;
+    float: left;
+}
+.author_info_article_fllow:hover{
+    background-color: lavender;
+}
+.author_info_article_fllow{
+    padding: 10px ;
+    cursor: pointer;
+}
+.author_info_detaile{
+    padding: 20px;
+}
+.author_info_detaile .author_info_detaile_ul1 > li{
+    font-size: 18px;
+    border-bottom: 2px dashed aquamarine;
+    margin-bottom: 20px;
+}
+.author_info_detaile_ul1_rel1{
+    margin-bottom: 20px;
+    border-bottom: 2px solid sandybrown;
+    overflow: hidden;
+}
+.author_info_detaile_ul1_rel1 >li{
+    border-bottom: 1px dashed rosybrown;
+    overflow: hidden;
+}
+.author_info_detaile_ul1_rel1_ul1{
+    float: right;
+    font-size: 14px;
+    color: red;
+}
+.author_info_detaile_ul1_rel1_ul1 > li{
+    float: left;
+    margin-left: 20px;
+}
+.author_info_detaile_ul1 > li:hover{
+    background-color: aquamarine;
+}
+
+.author_info_is_login{
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.author_info_is_login_div1{
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -125px;
+    background-color: wheat;
+}
+.author_info_is_login_div1>div{
+    margin: 20px 0 20px 70px;
+
+}
+.author_info_is_login_div1first{
+    text-align: center;
+    color: red;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    position: absolute;
+    top: -20px;right: 0;
+    cursor: pointer
+}
+.author_info_is_login_div1first:hover{
+    background-color: brown;
+}

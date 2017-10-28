@@ -1,0 +1,100 @@
+    {% if dict_req.rel == 1 %}
+        {% if not dict_req.username_artcle %}
+            <p style="color:red;font-size:18px;text-align:center;">对不起，你没有发布任何文章</p>
+        {% else %}
+            {% for k in dict_req.username_artcle%}
+                <a href="details.html?artcles_id={{ k.id }}" class="person_mid_a" artcles_id={{ k.id }}>
+                <ul class="person_mid_ul">
+                    <li style="text-align: center;color: red;">{{ k.title }}
+{#                        <span style="margin-left:10px;" class="span0">编辑</span>#}
+                        <span class="span0 delete_artcle">删除</span>
+                    </li>
+                    <li style="text-indent: 2em;">{{ k.summary }}</li>
+                    <li style="color: red;">
+                        <ul class="person_mid_midul">
+                            <li>{{ k.create_time|date:"Y-m-d H:i:s" }}</li>
+                            <li>{{ k.article_location.locations }}</li>
+                        </ul>
+                    </li>
+                </ul></a>
+            {% endfor %}
+        {% endif %}
+    {% elif dict_req.rel == 2 %}
+        <div class="person_mid2_div">
+        {% if dict_req.fans%}
+            <div class="fans_mount">恭喜你，你的粉丝数：<em style="margin-left:30px;font-size: 22px;color: red;">{{ dict_req.fans_len }}</em></div>
+            <div>
+                <ul class="fans_ul">
+                    {% for k in dict_req.fans %}
+                    <li class="fans_li"><a href="author_info.html?rel=1&author_id={{ k.author_id_id }}">{{ k.author_id.nickname }}</a>(<span style="color: red;">传送门</span>)</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div class="fans_mount" style="color: red;">很遗憾，您并没有粉丝！请继续努力！T_T</div>
+        {% endif %}
+        </div>
+    {% elif dict_req.rel == 3 %}
+        <div class="person_mid3_div">
+        {% if dict_req.fllow %}
+            <div class="fans_mount">恭喜你，您关注了：<em style="margin-left:30px;font-size: 22px;color: red;">{{ dict_req.fllow_len }}人</em></div>
+            <div>
+                <ul class="fans_ul">
+                    {% for k in dict_req.fllow %}
+                    <li class="fans_li"><a href="author_info.html?rel=1&author_id={{ k.fllow_id_id }}">{{ k.fllow_id.nickname }}(<span style="color: red;">传送门</span>)</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div class="fans_mount" style="color: red;width: 600px">很遗憾，您没关注任何人！找人关注一下吧！T_T</div>
+        {% endif %}
+        </div>
+    {% elif dict_req.rel == 4 %}
+    <div class="person_mid4_div">
+        <div class="pub_text">
+            <p>
+                <em>题目：</em>
+                <p>
+                    <textarea placeholder="请输入你的标题" style="height: 60px;font-size: 24px;" class="pub_title pub_jqeach"></textarea>
+                </p>
+            </p>
+        </div>
+        <div class="pub_text">
+            <p>
+                <em>地点：</em>
+                <select style="width: 100px" class="pub_location pub_jqeach">
+                    {% for k in dict_req.artcle_location %}
+                        <option value="{{ k.id }}">{{ k.locations }}</option>
+                    {% endfor %}
+                </select>
+                <em>文章类型：</em>
+                <select style="width: 100px" class="pub_categary pub_jqeach">
+                    {% for k in dict_req.artcle_categry %}
+                        <option value="{{ k.id }}">{{ k.Category }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+        </div>
+        <div class="pub_text">
+            <p>
+                <em>摘要：</em>
+                <p>
+                    <textarea placeholder="请输入你的摘要" style="height: 80px;font-size: 20px;" class="pub_summary pub_jqeach"></textarea>
+                </p>
+            </p>
+        </div>
+        <div class="pub_text">
+            <p>
+                <em>正文：</em>
+                <p>
+                    <textarea placeholder="请输入你的正文" style="height: 200px;font-size: 16px" class="pub_content pub_jqeach"></textarea>
+                </p>
+            </p>
+        </div>
+        <div class="pub_text">
+            <div style="margin: 10px auto;width: 120px;">
+                <input type="button" value="点击发布" class="pub_text_button" style="width: 120px;height: 50px;border-radius: 20px;font-size: 16px;color: brown">
+            </div>
+        </div>
+    </div>
+    {% endif %}

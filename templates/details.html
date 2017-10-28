@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章详情</title>
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+</head>
+<body>
+<div class="person_top_maxbig">
+    <div class="person_top_mid">
+        <div class="person_top_mid_left">
+            <a href="index.html">
+                这LOGO是真的！
+            </a>
+        </div>
+        <div class="person_top_mid_right">
+            <ul class="right_ul">
+                <li>
+                    {{ nickname }}
+                </li>
+                <li>
+                    <a href="personal.html">个人管理</a>
+                </li>
+
+                <li>
+                    <a href="introduce.html">本页及作者介绍</a>
+                </li>
+
+                <li class="cancell" style="display:none;">
+                    <a href="cancell">注销</a>
+                </li>
+                        <script type="text/javascript">
+                            $(function () {
+                                if ($.cookie('is_cookie_cancell')){
+                                $('.right_ul .cancell').css('display','block')
+                            }
+                            })
+                        </script>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="details_mid_big">
+    <div class="details_midtop">
+        <p class="title" style="text-align: center;font-size: 22px;color: red;"> <em> {{ wenzhangs.0.title }}</em></p>
+    </div>
+    <div class="details_midtopb">
+        <em>摘要</em>
+        <p class="title" style="text-indent: 2em;font-size: 20px"> {{ wenzhangs.0.summary }}</p>
+    </div>
+    <div class="details_mid_mid">
+        <em>正文</em>
+        <p class="title" style="text-indent: 2em;font-size: 18px;border-bottom: 1px dashed darkgrey;"> {{ wenzhangs.0.text }}</p>
+        <ul style="float: right;">
+            <li style="float: left;"><em>作者：</em><a href="author_info.html?rel=1&author_id={{ wenzhangs.0.author_id }}">{{ wenzhangs.0.author.nickname}}(<span style="color: red;">作家传送门</span>)</a></li>
+            <li style="float: left;"><em>日期：</em>{{ wenzhangs.0.create_time|date:"Y-m-d H:i:s" }}</li>
+        </ul>
+    </div>
+    <div class="details_commit">
+        <a href="#commit_text" style="float: right;">我要评论</a>
+        <em style="color: red;font-size: 20px;">评论：</em>
+        <div>
+            <ul class="commit_ul1" style="margin-bottom: 10px">
+            {% if not commits %}
+                <li style="font-size: 22px;color: red;text-align: center;">还没有评论，快来抢沙发吧！！！！！！</li>
+            {% else %}
+                {% for k in commits %}
+                {% if k.commit_display == 1%}
+                <li>
+                    <p style="color: blue;">{{ k.floor }}楼</p>
+                    <p>{{ k.commit }}</p>
+                    <div class="commit_div1" style="overflow: hidden">
+                        <ul class="commit_ul2">
+                            <li><em>评论者：</em><a href="author_info.html?rel=1&author_id={{ k.commit_author_id }}">{{ k.commit_author.nickname }}(<span style="color: red;">传送门</span>)</a>
+                                {% if k.commit_author.nickname == k.commit_artcles.author.nickname %}
+                                    <span style="color: blue">（作者）</span>
+                                {% endif %}
+                            </li>
+                            <li><em>评论时间：</em>{{ k.commit_time|date:"Y-m-d H:i:s" }}</li>
+                            <li><a style="color: red;cursor: pointer;" class="replay_layer" commit___1_line_id="{{ k.id }}" artcles_id="{{ wenzhangs.0.id }}" href="javascript:void(0)">回复</a>
+                                {% if login_id == k.commit_author_id %}
+                                <a href="javascript:void(0)" class="delete_commit1" delete_commit="{{ k.id }}">删除</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="position: relative;display: none" class="button_div_1">
+                        <textarea placeholder="请输入评论" class="teare_pub" ></textarea>
+                        <input type="button" value="提交" class="button_pub button_publ submit_one">
+                        <input type="button" value="取消" class="button_pub button_pubr">
+                    </div>
+                    {% for m in commits2_total %}
+                        {% if m.commit2_to_commit1_id == k.id %}
+                        {% if m.commit2_display == 1 %}
+                        <ul><li style="overflow: hidden">
+                        <p><em>回复<span>
+                            {% if m.commit2_to_self_id%}
+                                <a href="author_info.html?rel=1&author_id={{ m.commit2_to_self.commit2_author_id }}">{{ m.commit2_to_self.commit2_author.nickname}}(<span style="color: red;">传送门</span>)</a>
+                                {% else %}
+                                <a href="author_info.html?rel=1&author_id={{ m.commit2_author_id }}">{{ m.commit2_to_commit1.commit_author.nickname }}(<span style="color: red;">传送门</span>)</a>
+                            {% endif %}
+                        </span>：</em>{{ m.commit2 }}
+                        </p>
+                            <ul style="position: relative;float: right;">
+                                <li style="float: left;padding:0 10px;"><em>评论者：</em>
+                                    <a href="author_info.html?rel=1&author_id={{ m.commit2_author_id }}">{{ m.commit2_author.nickname }}(<span style="color: red;">传送门</span>)</a>
+                                    {% if m.commit2_author.nickname == k.commit_artcles.author.nickname %}
+                                    <span style="color: blue">（作者）</span>
+                                {% endif %}
+                                </li>
+                                <li style="float: left;padding:0 10px;"><em>评论时间：</em>{{ m.commit2_time|date:"Y-m-d H:i:s" }}</li>
+                                <a href="javascript:void(0)" class="two_layer_submit" two_to_on_id="{{ k.id }}" author_who="{{ m.id }}" artcles_id="{{ wenzhangs.0.id }}">回复</a>
+                                {% if login_id == m.commit2_author_id %}
+                                    <a href="javascript:void(0)" class="delete_commit2" delete_commit="{{ m.id }}">删除</a>
+                                {% endif %}
+                            </ul>
+                         </li>
+                        </ul>
+                    <div style="position: relative;display: none" class="button_div_2">
+                        <textarea placeholder="请输入评论" class="teare_pub"></textarea>
+                        <input type="button" value="提交" class="button_pub button_publ submit_two">
+                        <input type="button" value="取消" class="button_pub button_pubr">
+                    </div>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    </li>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="details_mid_combutton">
+        <textarea style="width: 600px;height: 50px" class="commit_text" artcles_id="{{ wenzhangs.0.id }}" id="commit_text"></textarea>
+        <a href="javascript:void(0);" >提交评论</a>
+    </div>
+</div>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

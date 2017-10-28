@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <title>密码找回</title>
+    <link rel=stylesheet type=text/css href="/static/css/login.css">
+</head>
+<body>
+<div class="backpw_mid_big1">
+    <div class="backpw_mid_big2">
+        <span class="backpw_mid_big2_sp1">{{ datamess }}</span>
+    </div>
+    <div class="backpw_mid_big3">
+        <form action="backpw.html" method="POST">
+            {% csrf_token %}
+            <ul class="backpw_mid_big3_ul1">
+                <li>
+                    <div>
+                        <label for="username">用户名</label>
+                        <input value="{{ data.username }}" class="check_null" id="username" name="username" type="text" placeholder="请输入注册时的用户名">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <label for="email">邮箱</label>
+                        <input value="{{ data.email }}" class="check_null" id="email" name="email" placeholder="请输入注册时的邮箱">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <label for="nickname">昵称</label>
+                        <input value="{{ data.nickname }}" class="check_null" id="nickname" name="nickname" placeholder="请输入注册时的昵称">
+                        <span>{{ errors }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <input type="submit" value="提交" class="submitt">
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

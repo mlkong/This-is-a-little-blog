@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人管理</title>
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+</head>
+<body>
+<div class="person_top_maxbig">
+    <div class="person_top_mid">
+        <div class="person_top_mid_left">
+            <a href="index.html">
+                这LOGO是真的！
+            </a>
+        </div>
+        <div class="person_top_mid_right">
+            <ul class="right_ul">
+                <li>
+                    {{ hellow_a }}
+                </li>
+                <li>
+                    <a href="personal.html">个人管理</a>
+                </li>
+                <li><a href="introduce.html">本页及作者介绍</a></li>
+                <li>
+                    {{ cancell_a }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="person_topbottom_midbig">
+        <ul class="person_topbottom_ul">
+            <li>
+                {% if dict_req.rel == 1 %}
+                <a href="personal.html?rel=1" class="active">我的文章</a>
+                {% else %}
+                <a href="personal.html?rel=1" >我的文章</a>
+                {% endif %}
+            </li>
+            <li>{% if dict_req.rel == 2 %}
+                <a href="personal.html?rel=2" class="active">我的粉丝</a>
+                {% else %}
+                <a href="personal.html?rel=2" >我的粉丝</a>
+                {% endif %}
+            </li>
+            <li>
+                {% if dict_req.rel == 3 %}
+                <a href="personal.html?rel=3" class="active">我关注的人</a>
+                {% else %}
+                <a href="personal.html?rel=3">我关注的人</a>
+                {% endif %}
+            </li>
+            <li>{% if dict_req.rel == 4 %}
+                <a href="personal.html?rel=4" class="active">发布</a>
+                {% else %}
+                <a href="personal.html?rel=4">发布</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+<div class="person_mid_maxbig">
+{% include 'personaltep.html' %}
+</div>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

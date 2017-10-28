@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人管理</title>
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+</head>
+<body>
+<div class="person_top_maxbig">
+    <div class="person_top_mid">
+        <div class="person_top_mid_left">
+            <a href="index.html">
+                这LOGO是真的！
+            </a>
+        </div>
+        <div class="person_top_mid_right">
+            <ul class="right_ul">
+                <li>
+                    {{ nickname }}
+                </li>
+                <li>
+                    <a href="personal.html">个人管理</a>
+                </li>
+                <li>
+                    {{ cancell_a }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="width: 940px;margin: 0 auto;background-color:bisque;font-size: 20px;padding: 20px">
+    <h1 style="text-align: center;">真的有点丑，没用任何前端特效！</h1>
+    <h2 style="color: red;">此小项目简介：</h2>
+    <p>经过了一周加班加点，终于是将它赶出来了，完成了自己的第一份个人作品。此小项目完成了大部分博客（微博？新闻浏览？姑且就叫做博客吧!）基本功能吧。用得语言的Python+JavaScript,后台采用的WEB框架是django，前端用了jQuery。
+    很遗憾的是，由于鄙人没有设计头脑，页面基本上没有规划，前端只做了一个简单的呈现，做到哪里，在想这里应该有什么功能或者返回去再看需要加什么功能，显得十分乱，由于时间问题就显得有些粗糙了，就当练一下手吧。
+    PS：页面我也会做华丽的哦，比如加入JQ的动画，或者C3的动画,更或者直接用bootstrap。
+    </p >
+    <br>
+    <h2 style="color: red;">有些什么功能：</h2>
+    <p>我就按照做的顺序来说吧！</p>
+    <p>1.登陆验证码功能，前后台都有做验证是否合法！</p>
+    <p>2.然后简单的做了个找回密码模块！</p>
+    <p>3.最重要的注册模块，采用了Django的form表单做的！</p>
+    <p>4.主页就是文章的展示，组合筛选，分页功能等等！</p>
+    <p>5.文章的详情展示,回复，删除，评论等等一系列必须的小功能！</p>
+    <p>6.个人管理模块，有自己的文章管理，粉丝，关注，等等！</p>
+    <p>7.每个博主的个人资料展示模块，可以查看该博主的信息等！</p>
+    <p>8.不喜欢7，就要8。当然每个页面都判断了是否登录或者登陆过又或者没有登陆过等等，返回的不同内容！</p>
+    <p>PS：数据库采用了Mysql，不是django本身自带的，要连数据库，需要去配置文件里面改一下。。。。。</p>
+    <br>
+    <h2 style="color: red;">关于作者：</h2>
+    <p>1.所有的东西都是通过自学而来的，不要怀疑我的热情，个人很希望能在互联网上发展。以后不断的学习新知识。</p>
+    <p>2.前端会：HTML、CSS、JS、JQ、H5、C3等，当然也了解一些其他框架。</p>
+    <p>3.后台:django、Python</p>
+    <p>4.数据库：Mysql,redis</p>
+    <p>5.TCP/IP协议等，也会一些基本的LINUX，可惜一直没用了，忘得差不多了。</p>
+    <p>5.作者今年刚毕业，做过一份通信方面的工作。毕竟通信工程的。</p>
+    <p>6.正准备学习爬虫，哎，苦于忙着找工作，首先得活的下去啊。(*^__^*)</p>
+    <p>PS：虽然很LOW，但还是很有成就感，哈哈，终于可以安心的睡一觉了~~~~(>_<)~~~~。</p>
+    <p style="color: red;">个人邮箱348143738@qq.com</p>
+    <br>
+    <p style="color: red;text-align: right">上传时间2017.10.29。某个苦逼的小白。</p>
+</div>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

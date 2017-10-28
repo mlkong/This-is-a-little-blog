@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <title>注册</title>
+</head>
+<body>
+<div class="register_mid_big">
+    <div class="register_mid_top">请仔细填写注册信息！^(*￣(oo)￣)^</div>
+    <div class="register_mid_mid">
+            <form action="register.html" method="POST">
+            {% csrf_token %}
+            <div class="form_register"><label>{{ obj.username.label }} </label>{{ obj.username }} <span>{{ obj.errors.username.0 }}{{ exist.usernamerrs }}</span></div>
+
+            <div class="form_register"><label>{{ obj.passwd1.label }}</label> {{ obj.passwd1 }} <span>{{ obj.errors.passwd1.0 }}</span></div>
+
+            <div class="form_register"><label>{{ obj.passwd2.label }}</label> {{ obj.passwd2 }}<span> {{ obj.errors.passwd2.0 }}{{ exist.passwdrrs }}</span></div>
+
+            <div class="form_register"><label>{{ obj.phone.label }} </label>{{ obj.phone }} <span>{{ obj.errors.phone.0 }}</span></div>
+
+            <div class="form_register"><label>{{ obj.nickname.label }} </label>{{ obj.nickname }}<span> {{ obj.errors.nickname.0 }}{{ exist.nicknamerrs }}</span></div>
+
+            <div class="form_register"><label>{{ obj.email.label }} </label>{{ obj.email }}<span> {{ obj.errors.email.0 }}</span></div>
+
+            <div class="form_register"><label>性别</label>
+                {% for ele in sex %}
+                {{ ele.sex }}<input type="radio" name="sex" required value="{{ ele.id }}" checked="checked">
+                {% endfor %}
+            </div>
+
+            <div class="form_register">
+                <label for="">所在地</label>
+                <select name="location">
+                    {% for ele in location %}
+                        <option value="{{ ele.id }}">{{ ele.locations }}</option>
+                    {% endfor %}
+            </select>
+            </div>
+
+            <div class="form_register"><label></label><input type="submit" value="提交" class="subumit"/></div>
+        </form>
+
+    </div>
+</div>
+<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

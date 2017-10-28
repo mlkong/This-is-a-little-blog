@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页</title>
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+</head>
+<body>
+    <div class="index_top_maxbig" style="z-index: 100;">
+        <div class="index_top_big">
+            <div class="index_top_inner">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none">
+                        这LOGO是真的！
+                    </a>
+                </div>
+                <div class="list">
+                    <ul class="list_ul">
+                        <li>{{ nickname }}</li>
+                        <li><a href="personal.html"> 个人管理</a></li>
+                        <li><a href="introduce.html"> 本页及作者介绍</a></li>
+                        <li class="cancell" style="display:none;"><a href="cancell">注销</a></li>
+                        <script type="text/javascript">
+                            $(function () {
+                                if ($.cookie('is_cookie_cancell')){
+                                $('.index_top_big .list .list_ul .cancell').css('display','block')
+                            }
+                            })
+                        </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="author_info_mid_maxdiv" style="z-index: 100;">
+        <div class="author_info_mid_top">
+            <div class="author_info_div">
+                <ul class="author_info_ul1">
+                    <li><em>博主：</em></li><li>{{ dict.author_info.0.nickname }}</li>
+                    <li></a>{{ dict.isfllow_or_no }}</li>
+{#                    <em class="author_info_article_fllow">点击关注</em>#}
+                </ul>
+                <ul class="author_info_ul2">
+                    <li><em>个人信息：</em></li>
+                    <li><em>性别：</em></li><li>{{ dict.author_info.0.sex.sex }}</li>
+                    <li><em>所在地：</em></li><li>{{ dict.author_info.0.location.locations }}</li>
+                </ul>
+            </div>
+            <div class="author_info_article">
+                <ul class="author_info_article_ul1">
+                    <li>{% if dict.rel == 1 %}
+                        <a href="author_info.html?rel=1&author_id={{ dict.author_id }}" class="active">博主文章</a>
+                        {% else %}
+                        <a href="author_info.html?rel=1&author_id={{ dict.author_id }}">博主文章</a>
+                    </li>
+                        {% endif  %}
+                    <li>{% if dict.rel == 2 %}
+                        <a href="author_info.html?rel=2&author_id={{ dict.author_id }}" class="active">博主的关注</a><span style="color: red">({{ dict.fllow_len }})</span>
+                        {% else %}
+                        <a href="author_info.html?rel=2&author_id={{ dict.author_id }}">博主的关注</a><span style="color: red">({{ dict.fllow_len }})</span>
+                        {% endif %}
+                    </li>
+                    <li>{% if dict.rel == 3 %}
+                        <a href="author_info.html?rel=3&author_id={{ dict.author_id }}" class="active">博主的粉丝</a><span style="color: red">({{ dict.fans_len }})</span>
+                        {% else %}
+                        <a href="author_info.html?rel=3&author_id={{ dict.author_id }}">博主的粉丝</a><span style="color: red">({{ dict.fans_len }})</span>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="author_info_detaile">
+            <ul class="author_info_detaile_ul1">
+                {% if dict.rel == 1 %}
+                    {% if not dict.articles_info %}
+                        <li>抱歉，该博主还没有发布文章</li>
+                    {% else %}
+                        {% for k in dict.articles_info %}
+                            <li><a href="details.html?artcles_id={{ k.id }}">
+                                <ul class="author_info_detaile_ul1_rel1">
+                                    <li style="text-align: center;color: red">{{ k.title }}</li>
+                                    <li>{{ k.summary }}</li>
+                                    <li>
+                                        <ul class="author_info_detaile_ul1_rel1_ul1">
+                                            <li><em>地点：</em>{{ k.article_location.locations}}</li>
+                                            <li><em>时间：</em>{{ k.create_time|date:"Y-m-d H:i:s"  }}</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </a></li>
+                        {% endfor %}
+                    {% endif %}
+
+                {% elif dict.rel == 2 %}
+                    {% if not dict.fllow %}
+                        <li>该博主没有关注任何人！</li>
+                    {% else %}
+                        {% for k in dict.fllow%}
+                            <li><a href="author_info.html?rel=1&author_id={{ k.fllow_id_id }}">{{ k.fllow_id.nickname }}(<span style="color: red;">传送门</span>)</a></li>
+                        {% endfor %}
+                    {% endif %}
+                {% elif dict.rel == 3 %}
+                    {% if not dict.fans %}
+                        <li>抱歉博主没有任何粉丝！</li>
+                    {% else %}
+                        {% for k in dict.fans %}
+                            <li><a href="author_info.html?rel=1&author_id={{ k.author_id_id }}">{{ k.author_id.nickname }}(<span style="color: red;">传送门</span>)</a></li>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{#    弹出登陆框#}
+    <div class="author_info_is_login" style="display: none">
+        <form>
+            {% csrf_token %}
+            <div class="author_info_is_login_div1">
+                <div class="author_info_is_login_div1first">X</div>
+                <div>
+                    <div>用户名：</div>
+                    <div>
+                        <input type="text" class="author_info_is_login_in author_info_username1" >
+                    </div>
+                </div>
+                <div>
+                    <div>密码：</div>
+                    <div>
+                        <input type="password" class="author_info_is_login_in author_info_password1">
+                    </div>
+                </div>
+                <div style="margin: 0 auto;width: 50px">
+                    <input class="author_info_is_login_div1_button" type="submit" value="提交" style="width: 50px;height: 30px">
+                </div>
+                <p class="author_info_is_login_p" style="text-align: center;margin: 20px 0 0;color: red">
+                </p>
+            </div>
+        </form>
+    </div>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

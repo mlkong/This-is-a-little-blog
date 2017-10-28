@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../static/favicon.ico">
+    <title>登陆</title>
+    <link rel=stylesheet type=text/css href="/static/css/login.css">
+</head>
+<body>
+<div class="login_main">
+    <div>
+        <h1 style="color: red;display:block;width: 250px;margin: 0 auto;">您好，请登录！</h1>
+    </div>
+    <form id="login_form" action="/login.html" METHOD="POST">
+        {% csrf_token %}
+        <div class="login_main_form">
+            <label for="username">用户名</label>
+            <input class="check_null" type="text" name="username" id="username" placeholder="请输入用户名" value="{{ message.username }}">
+        </div>
+        <div class="login_main_form">
+            <label for="passwd">密码</label>
+            <input class="check_null" type="password" value="{{ message.passwd }}" name="passwd" id="passwd" placeholder="请输入密码">
+            <span class='errors'style="margin-left:10px;color: red">{{ check }}</span>
+        </div>
+        <div class="login_main_form">
+            <label for="check_code">验证码</label>
+            <input class="check_null" type="text" name="check_code" id="check_code" placeholder="请输入验证码">
+            <img class="check_code_img" src="/check_code" alt="点击图片或刷新">
+        </div>
+        <div class="login_main_form">
+            <div class="login_main_form_miandenglu">
+                <input type="checkbox" name="mianlogin" value="1"> 一个月内免登陆
+            </div>
+        </div>
+        <div class="login_main_form">
+            <input type="submit" value="登陆" class="login_main_form_dengluipu">
+            <div class="login_main_form_denglu">登陆</div>
+            <a href="backpw.html" style="margin-left:10px ">忘记密码？</a>
+            <a href="register.html" style="margin-left:10px ">注册</a>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>
