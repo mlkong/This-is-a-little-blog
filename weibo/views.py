@@ -36,18 +36,16 @@ def per_islogin(func):
 '''
 def check_login_session_cookie(func):
     def check_login(request,*args,**kwargs):
+        global nickname_login_a
         # jump_url 记录跳转URL
         request.session['jump_url'] = request.get_full_path()
         if request.session.get('is_session_login', False):
-            global nickname_login_a
             nickname_login = request.COOKIES.get('is_cookie_nickname',False)
             nickname_login_a = '<a href="personal.html" style="color:red;">'+ str(nickname_login.encode('latin-1').decode('utf-8'))+','+'欢迎您</a>'
         elif request.COOKIES.get('is_cookie_login',False):
-            global nickname_login_a
             nickname_login = request.COOKIES.get('is_cookie_nickname',False)
             nickname_login_a = '<a href="login.html" style="color:red;">'+ str(nickname_login.encode('latin-1').decode('utf-8')) +','+'您好，请登录！</a>'
         else:
-            global nickname_login_a
             nickname_login_a = """<a href='login.html' style='color:red;'>您好，请登录！</a>"""
         return func(request, *args, **kwargs)
     return check_login

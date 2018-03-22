@@ -9,8 +9,8 @@ class UserInfo(models.Model):
     nickname=models.CharField(max_length=32,null=False,unique=True)
     phone = models.CharField(max_length=32,null=False)
 
-    location = models.ForeignKey(to='UserLocation',to_field='id')
-    sex = models.ForeignKey(to='UserSex', to_field='id')
+    location = models.ForeignKey(to='UserLocation',to_field='id',on_delete=models.CASCADE)
+    sex = models.ForeignKey(to='UserSex', to_field='id',on_delete=models.CASCADE)
 
 # 地址表
 class UserLocation(models.Model):
@@ -34,9 +34,9 @@ class Articles(models.Model):
     read_mount = models.IntegerField(null=False,default=0)
     commit_mount = models.IntegerField(null=False,default=0)
 
-    author = models.ForeignKey(to='UserInfo',to_field='id')
-    article_location = models.ForeignKey(to='UserLocation', to_field='id')
-    article_category = models.ForeignKey(to='ArticleCategory', to_field='id')
+    author = models.ForeignKey(to='UserInfo',to_field='id',on_delete=models.CASCADE)
+    article_location = models.ForeignKey(to='UserLocation', to_field='id',on_delete=models.CASCADE)
+    article_category = models.ForeignKey(to='ArticleCategory', to_field='id',on_delete=models.CASCADE)
 
  # 评论表1
 class Commit(models.Model):
@@ -45,8 +45,8 @@ class Commit(models.Model):
     commit_display = models.IntegerField(null=False,default=1)
     floor = models.IntegerField(null=True,default=0)
 
-    commit_author = models.ForeignKey(to='UserInfo', to_field='id')
-    commit_artcles = models.ForeignKey(to='Articles', to_field='id')
+    commit_author = models.ForeignKey(to='UserInfo', to_field='id',on_delete=models.CASCADE)
+    commit_artcles = models.ForeignKey(to='Articles', to_field='id',on_delete=models.CASCADE)
 
     # 以便VIEWS高并发显示楼层的伪处理,哎，只有这样实现了。
     class Meta:
@@ -60,15 +60,15 @@ class Commit2(models.Model):
     commit2_time = models.DateTimeField(auto_now_add=True,null=True)
     commit2_display = models.IntegerField(null=False,default=1)
 
-    commit2_author = models.ForeignKey(to='UserInfo', related_name='commit2_author_back',to_field='id')
-    commit2_artcles = models.ForeignKey(to='Articles', to_field='id',related_name='commit2_artcles_back')
-    commit2_to_commit1 = models.ForeignKey(to='Commit',to_field='id',related_name='commit2_to_commit1_back')
-    commit2_to_self = models.ForeignKey(to='self',related_name='commit2_to_self_back',null=True)
+    commit2_author = models.ForeignKey(to='UserInfo', related_name='commit2_author_back',to_field='id',on_delete=models.CASCADE)
+    commit2_artcles = models.ForeignKey(to='Articles', to_field='id',related_name='commit2_artcles_back',on_delete=models.CASCADE)
+    commit2_to_commit1 = models.ForeignKey(to='Commit',to_field='id',related_name='commit2_to_commit1_back',on_delete=models.CASCADE)
+    commit2_to_self = models.ForeignKey(to='self',related_name='commit2_to_self_back',null=True,on_delete=models.CASCADE)
 
 # 粉丝及关注关系表
 class Fllows(models.Model):
-    author_id = models.ForeignKey(to='UserInfo',to_field='id',related_name='author_to_fllows',null=True)
-    fllow_id = models.ForeignKey(to='UserInfo', to_field='id',related_name='fllow_to_author',null=True)
+    author_id = models.ForeignKey(to='UserInfo',to_field='id',related_name='author_to_fllows',null=True,on_delete=models.CASCADE)
+    fllow_id = models.ForeignKey(to='UserInfo', to_field='id',related_name='fllow_to_author',null=True,on_delete=models.CASCADE)
 
     class Meta:
         unique_together = [
